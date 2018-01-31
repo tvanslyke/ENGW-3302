@@ -1,7 +1,7 @@
 # A Note to the Reader
 If you're reading this, you probably know that this is still a draft.  Please understand that the structure of this document is still very much a work in progress.  Sections are still being added and shifted around quite whimsically.  
 
-Also, the tone here is intentionally quite informal.  A lot (but not all) of these sections are written as though they are answers to imagined questions - the kind I may have wanted answers to when I was first learning about programming and software development.  It may be best to ort of like what you might see on [Stack Overflow](https://stackoverflow.com/), if you're familiar with that community.  I have a tendancy to get very explain-y, so it seems like a goo
+Also, the tone here is intentionally quite informal.  A lot (but not all) of these sections are written as though they are answers to imagined questions - the kind I may have wanted answers to when I was first learning about programming and software development.  It may be best to think of this as something you might see on [Stack Overflow](https://stackoverflow.com/), if you're familiar with that community.  I have a tendancy to get very explain-y when I write, so it seems like an appropriate model.
 
 Also, chances are that I have yet to proofread any part of this.  Don't judge my errors too harshly. :)
 
