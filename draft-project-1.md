@@ -44,7 +44,7 @@ Listed here are several common terms you might see in discussions among programm
 
 A useful resource for exploring more terms like these is the [Jargon File](http://catb.org/jargon/html/).
 
-# Different Jobs Need Different Tools
+# Different Jobs Demand Different Tools
 There is no "best" programming language.  Different languages have different use cases and some are better than others at different jobs.  For example, say you have a text file like this:
 
 ```
