@@ -56,7 +56,7 @@ Carlin    George 80
 
 And you wanted to see all of the lines that where the third column has a number that is less than 60.  Most programmers would write a program to do this.  To demonstrate that some languages might do the job better than others, here's a Python program that does the task:
 
-python```
+```python
 from sys import stdin
 for line in stdin:
 	third_col = int(line.strip().split()[2])
@@ -65,7 +65,7 @@ for line in stdin:
 ```
 
 The same thing in AWK:
-awk```
+```awk
 $3 < 60
 ```
 AWK is clearly the better tool for the job; even if it is less popular than Python, in general.
