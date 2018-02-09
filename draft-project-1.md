@@ -10,7 +10,12 @@ Also, chances are that I have yet to proofread any part of this.  Don't judge my
 #### EDIT:  
 After class today, I'm aware that this document is perhaps a bit *too* informal.  I would appreciate some specific clarifications in areas of this text that you find to be non-obvious examples of accectable/unacceptable informality.  
 
-Additionally, I have yet to really discuss any genres specifically; I've mostly touched on how to communicate in general, a couple dos and don'ts, and some vocabulary.  
+One particular questions that I have for my revision, is regarding how I should go about transparently expressing my own opinions.  Should I ...
+* Just say something like "It is my opinion that ..."
+* Say something more formal like "It is the author's opinion that ..."
+* or just leave opinions out of the text.
+
+Additionally, I have yet to really discuss any genres specifically; I've mostly touched on how to communicate in general, a couple dos and don'ts, and some vocabulary.
 
 ## Open Source Software
 Nowadays, entities like [Intel](https://github.com/intel), [Google](https://github.com/google), and even [Microsoft](https://github.com/Microsoft) maintain and contribute to open-source software projects.  Intel and Google, in particular, contribute heavily to what is widely considered to be *the* quintessential open-source project, the [Linux Kernel](https://en.wikipedia.org/wiki/Linux_kernel).  Even if you, the reader, are not interested in Free (as in freedom) and Open Source Software (FOSS), employers certainly are.
