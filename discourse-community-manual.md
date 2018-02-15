@@ -1,4 +1,20 @@
-# Getting Started in the Free and Open Source Software Community
+
+[Getting Started in the Free and Open Source Software Community](## Getting Started in the Free and Open Source Software Community)
+[Who Cares About Open Source Software?](## Who Cares About Open Source Software?)
+[What Programmers Like to Talk About](## What Programmers Like to Talk About)
+	[Conventions](### Conventions)
+	[It's the Code, Stupid!](### It's the Code, Stupid!)
+		[Real Names Please](#### Real Names Please)
+	[C is the Lingua Franca of Programming](### C is the Lingua Franca of Programming)
+	[Your Definition of the Word "Hacker" Is Wrong](### Your Definition of the Word "Hacker" Is Wrong)
+[Some Vocabulary](## Some Vocabulary)
+		[Note: Java is to JavaScript as Car is to Carpet](#### Note: Java is to JavaScript as Car is to Carpet)
+[How Programmers Talk to One Another](## How Programmers Talk to One Another)
+	[The README](### The README)
+		[File Formats: Text, Markdown, ReStructured Text, and more](#### File Formats: Text, Markdown, ReStructured Text, and more)
+[Some Closing Remarks](## Some Closing Remarks)
+
+## Getting Started in the Free and Open Source Software Community
 Free and Open Source Software (FOSS) refers to software ... 
 
 Throughout this text, you may find that I use some non-FOSS-specific terms to describe conventions or ideas in the FOSS community without specifying them as such.  For example, if a generalization is made about programmers in the FOSS community, it may read something like: "Programmers will typically do thing X while trying to achieve goal Y".  Please understand that such unqualified generalizations are implicitly FOSS-specific, so the previous text would read: "Programmers in the FOSS comunity ...".  Discussions about the greater programming community as a whole will be explicitly qualified to be so.
@@ -25,7 +41,14 @@ While we're on the topic of anonymity, just note that real names are quite stron
 ### C is the Lingua Franca of Programming
 Though nowadays this has shifted towards Python a bit, partucularly for pseudocode, the C programming language is something every sofware developer is expected to have at least a cursory understanding of.  Although a beginner won't be expected to know much outside of their first language, at some point it *will* be expected that they have the ability to look at a chunk of C code and be able to vaguely reason about what is going on.
 
-### Your Definition of "Hacker" Is Wrong
+### Your Definition of the Word "Hacker" Is Wrong
+The word "hacker" gets thrown around a lot nowadays by the media; the term has become so commonplace in the English-speaking world that that one can expect just about anybody to know what you mean when you use the word.  Unfornately, what you think about when you hear the word "hacker" is a bastardization of the term's original meaning.  Here is the definition of "hacker" according to the Jargon File:
+
+> A person who enjoys exploring the details of programmable systems and how to stretch their capabilities, as opposed to most users, who prefer to learn only the minimum necessary. RFC1392, the Internet Users' Glossary, usefully amplifies this as: A person who delights in having an intimate understanding of the internal workings of a system, computers and computer networks in particular.
+
+This is the term's original meaning as defined by the hacker community.  At some point along the way, the meaning of "hacker" has been mutated and reformed to refer to an individual who breaks computer system security.  The preferred terms for this definition are [*security hacker* or *cracker*](https://en.wikipedia.org/wiki/Security_hacker).
+
+Thus, within the larger programming community, the terms "hacker", "hacking", or similar, should be taken to mean their *true* definitions, unless context implies that their adopted meanings are being used.
 
 
 ## Some Vocabulary
@@ -52,16 +75,19 @@ Listed here are several common terms you might see in discussions among programm
 A useful resource for exploring more terms like these is the [Jargon File](http://catb.org/jargon/html/).
 
 
-
-
-
 #### Note: Java is to JavaScript as Car is to Carpet
 This is a very common confusion amongst the uninformed.  Java and Javascript are similar only nominally.  The above title is frequently regurgitated by those "in the know" to demonstrate this fact.
 
 ## How Programmers Talk to One Another
 
+### The README
 
-## More Sections Here
+#### File Formats: Text, Markdown, ReStructured Text, and more
+READMEs will typically come in one of three formats: Text (.txt), Markdown (.md), and ReStructured Text.
+
+Historically, the text file was the most common file format for the README.  
+
+Talk about markdown being used by reddit
 
 
 ## Some Closing Remarks
