@@ -1,28 +1,13 @@
-* [Getting Started in the Free and Open Source Software Community](## Getting Started in the Free and Open Source Software Community)
-* [Who Cares About Open Source Software?](## Who Cares About Open Source Software?)
-* [What Programmers Like to Talk About](## What Programmers Like to Talk About)
-    * [Conventions](### Conventions)
-    * [It's the Code, Stupid!](### It's the Code, Stupid!)
-        * [Real Names Please](#### Real Names Please)
-    * [C is the Lingua Franca of Programming](### C is the Lingua Franca of Programming)
-    * [Your Definition of the Word "Hacker" Is Wrong](### Your Definition of the Word "Hacker" Is Wrong)
-* [Some Vocabulary](## Some Vocabulary)
-        * [Note: Java is to JavaScript as Car is to Carpet](#### Note: Java is to JavaScript as Car is to Carpet)
-* [How Programmers Talk to One Another](## How Programmers Talk to One Another)
-    * [The README](### The README)
-        * [File Formats: Text, Markdown, ReStructured Text, and more](#### File Formats: Text, Markdown, ReStructured Text, and more)
-* [Some Closing Remarks](## Some Closing Remarks)
-
-## Getting Started in the Free and Open Source Software Community
-Free and Open Source Software (FOSS) refers to software ... 
+## Getting Started in the Free and Open-Source Software Community
+Free and Open-Source Software (FOSS) refers to software ... 
 
 Throughout this text, you may find that I use some non-FOSS-specific terms to describe conventions or ideas in the FOSS community without specifying them as such.  For example, if a generalization is made about programmers in the FOSS community, it may read something like: "Programmers will typically do thing X while trying to achieve goal Y".  Please understand that such unqualified generalizations are implicitly FOSS-specific, so the previous text would read: "Programmers in the FOSS comunity ...".  Discussions about the greater programming community as a whole will be explicitly qualified to be so.
 
-## Who Cares About Open Source Software?
+## Who Cares About Open-Source Software?
 
-Nowadays, entities like [Intel](https://github.com/intel), [Google](https://github.com/google), and even [Microsoft](https://github.com/Microsoft) maintain and contribute to open-source software projects.  Intel and Google, in particular, contribute heavily to what is widely considered to be *the* quintessential open-source project, the [Linux Kernel](https://en.wikipedia.org/wiki/Linux_kernel).  Even if you, the reader, are not interested in Free (as in freedom) and Open Source Software (FOSS), employers certainly are.
+Nowadays, entities like [Intel](https://github.com/intel), [Google](https://github.com/google), and even [Microsoft](https://github.com/Microsoft) maintain and contribute to open-source software projects.  Intel and Google, in particular, contribute heavily to what is widely considered to be *the* quintessential open-source project, the [Linux Kernel](https://en.wikipedia.org/wiki/Linux_kernel).  Even if you, the reader, are not interested in Free (as in freedom) and Open-Source Software (FOSS), employers certainly are.
 
-An excellent essay on the culture(s) of FOSS communities, [*The Cathedral and the Bazaar*](http://www.catb.org/esr/writings/cathedral-bazaar/), was written in back in the 90's by Eric S. Raymond.  It is worth a read if you want to know more about how different FOSS projects operate; particularly the Linux Kernel.  This essay is worth mentioning because it discusses the highly open and dynamic development model of the Linux Kernel, which has since been a model for many other open source projects.  
+An excellent essay on the culture(s) of FOSS communities, [*The Cathedral and the Bazaar*](http://www.catb.org/esr/writings/cathedral-bazaar/), was written in back in the 90's by Eric S. Raymond.  It is worth a read if you want to know more about how different FOSS projects operate; particularly the Linux Kernel.  This essay is worth mentioning because it discusses the highly open and dynamic development model of the Linux Kernel, which has since been a model for many other open-source projects.  
 
 
 ## What Programmers Like to Talk About
@@ -81,13 +66,54 @@ This is a very common confusion amongst the uninformed.  Java and Javascript are
 
 ### The README
 
+
+#### What's in a README?
+If you're looking to write a README for one of your software projects and are unsure of where to start, the best thing you can do is go have a look at other open-source projects **for the language you're using** and use them as guidelines for your own. For example, CPython, the [reference implementation](https://en.wikipedia.org/wiki/Reference_implementation) for the Python programming language, written in C, has a [README](https://github.com/python/cpython/) with sections that tell you things like:
+1) How to build and install the software.
+2) How to use the software.
+3) How to contribute to the project.
+4) How to run the test suite.
+5) Where to report bugs.
+
+and so on.  CPython is in an interesting position of being a project that is written in one programming language, C, while simultaneously implementing another, Python.  So in that project, you'll find a mixture of conventions from both the C community and the Python community.  
+
+The most common elements of a README, regardless of the languages used in the associated project are:
+1. An introduction. 
+	1. What is this project?  What problem does it solve and who might want to use it?
+2. Installation Guide
+    1. How do I install this software?
+        1. Projects written in compiled languages (C, C++, Rust, ...) typically use a [build system](https://en.wikipedia.org/wiki/Build_automation) (e.g. CMake, GNU Autotools, Bazel, ...).  Pick one and demonstrate how to use it to install your project in your README.
+        2. Dynamic languages, like Python, tend to use [package managers](https://en.wikipedia.org/wiki/Package_manager) (like [PIP](https://en.wikipedia.org/wiki/Pip_(package_manager))) that you can distribute your software with.
+3. Tutorials and Documentation
+    1. How do I use this software?
+        1. Show examples of how to use your project.  If it's a library, show code examples.  If it's a standalone application, show some common use cases.  Include pictures if there's a GUI component.
+    2. Documentation 
+        1. Documentation should be provided that explains what your code does and how others might use your code in their own projects, even if that wasn't your intention.
+        2. Again, follow the conventions of your language.  The Python guys like to use [Sphinx](http://www.sphinx-doc.org/en/master/) for documentation, Java uses [JavaDoc](https://en.wikipedia.org/wiki/Javadoc), and C++ projects may use [Doxygen](https://en.wikipedia.org/wiki/Doxygen).
+
+
+
 #### File Formats: Text, Markdown, ReStructured Text, and more
-READMEs will typically come in one of three formats: Text (.txt), Markdown (.md), and ReStructured Text.
+READMEs will typically come in one of three formats: Text (.txt), [Markdown](https://en.wikipedia.org/wiki/Markdown) (.md), and [ReStructured Text](https://en.wikipedia.org/wiki/ReStructuredText).  These formats are preferred because they are *simple*; you should be able to open and comforably view a README file in a simple text editor (e.g. Notepad on Windows).  Programmers, in general, like to be able to read and edit files without having to start up a bulky application like, for instance, MS Word.  A good rule of thumb is that if you're writing a README, another programmer should be able to read it in their terminal.
 
-Historically, the text file was the most common file format for the README.  
+Text files are rather self-explanatory, but how about Markdown and ReStructured Text?  Both of these are minimalist [markup languages](https://en.wikipedia.org/wiki/Lightweight_markup_language).  Both are human-readable files containing text that can be processed to generate a more pleasant-looking document.  This manual is written in Markdown and if you're reading this on Github, then you can see what the unprocessed file looks like by navigating to the top of the page and clicking on the 'Raw' button.  You'll find that, while not exactly pretty, the file is perfectly readable as-is.  
 
-Talk about markdown being used by reddit
 
+
+### The Mailing List
+Mailing lists are a very common communication medium for FOSS software projects.  For example, the [Linux Kernel Mailing List](https://lkml.org/) is the primary method for communicating with Linux kernel developers about Linux kernel development.  LLVM has its own mailing list as well, [cfe-commits](https://reviews.llvm.org/p/cfe-commits/).  
+
+Mailing lists are typically used by FOSS developers to communicate changes, proposals, and announcements within their respective projects.  Discourse in this medium is almost always informal but highly technical.  For an example of this mixture, see the converstion on LKML linked [here (** WARNING STRONG LANGUAGE **)](https://lkml.org/lkml/2014/7/24/584).  In that email, Linus Torvalds, who is known for his usage of strong language, angrily attacks GCC (a very popular open-source C compiler) while simultaneously speaking about topics such as register spilling, stack redzoning, and the x86_64 ABI.
+
+When communicating in mailing list:
+* Don't be overly formal, but do try to be polite.
+* Stay on topic.  If you're in an email chain about a proposed patch, talk about the patch and the systems it affects.
+* Keep it short.  Only say what needs to be said; if somebody else already said what you were thinking, then you don't need to add anything.
+
+### Academic Writing and Code Documentation
+
+
+## Getting Involved in Open-Source Software Projects
 
 ## Some Closing Remarks
 
