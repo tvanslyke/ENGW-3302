@@ -52,36 +52,7 @@ Listed here are several common terms you might see in discussions among programm
 A useful resource for exploring more terms like these is the [Jargon File](http://catb.org/jargon/html/).
 
 
-[//]: # (<Comment>
-## Different Jobs Demand Different Tools
-There is no "best" programming language.  Different languages have different use cases and some are better than others at different jobs.  For example, say you have a text file like this:
 
-```
-Seinfeld  Jerry  64
-Burr      Bill   49
-Carlin    George 80
-     ...
-```
-
-And you wanted to see all of the lines that where the third column has a number that is less than 60.  Most programmers would write a program to do this.  To demonstrate that some languages might do the job better than others, here's a Python program that does the task:
-
-```python
-from sys import stdin
-for line in stdin:
-	third_col = int(line.strip().split()[2])
-	if third_col < 60:
-		print(line)
-```
-
-The same thing in AWK:
-```awk
-$3 < 60
-```
-AWK is clearly the better tool for the job; even if it is less popular than Python, in general.
-
-At the same time, you'll never find an operating system written in either Python or AWK.  They're the wrong tools for the job.  That kind of task is reserved for *Systems Programming Languages* like C, C++, or Rust.
-
-</Comment>)
 
 
 #### Note: Java is to JavaScript as Car is to Carpet
