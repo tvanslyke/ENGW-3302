@@ -3,10 +3,6 @@ Free and Open Source Software (FOSS) refers to software ...
 
 Throughout this text, you may find that I use some non-FOSS-specific terms to describe conventions or ideas in the FOSS community without specifying them as such.  For example, if a generalization is made about programmers in the FOSS community, it may read something like: "Programmers will typically do thing X while trying to achieve goal Y".  Please understand that such unqualified generalizations are implicitly FOSS-specific, so the previous text would read: "Programmers in the FOSS comunity ...".  Discussions about the greater programming community as a whole will be explicitly qualified to be so.
 
-
-
-
-
 ## Who Cares About Open Source Software?
 
 Nowadays, entities like [Intel](https://github.com/intel), [Google](https://github.com/google), and even [Microsoft](https://github.com/Microsoft) maintain and contribute to open-source software projects.  Intel and Google, in particular, contribute heavily to what is widely considered to be *the* quintessential open-source project, the [Linux Kernel](https://en.wikipedia.org/wiki/Linux_kernel).  Even if you, the reader, are not interested in Free (as in freedom) and Open Source Software (FOSS), employers certainly are.
@@ -17,7 +13,7 @@ An excellent essay on the culture(s) of FOSS communities, [*The Cathedral and th
 ## What Programmers Like to Talk About
 If you want to start participating It's important to undestand, while talking
 
-### Conventions
+### Conventions 
 Talk about "quotation marks".
 
 ### It's the Code, Stupid!
@@ -28,6 +24,9 @@ While we're on the topic of anonymity, just note that real names are quite stron
 
 ### C is the Lingua Franca of Programming
 Though nowadays this has shifted towards Python a bit, partucularly for pseudocode, the C programming language is something every sofware developer is expected to have at least a cursory understanding of.  Although a beginner won't be expected to know much outside of their first language, at some point it *will* be expected that they have the ability to look at a chunk of C code and be able to vaguely reason about what is going on.
+
+### Your Definition of "Hacker" Is Wrong
+
 
 ## Some Vocabulary
 Listed here are several common terms you might see in discussions among programmers:
@@ -45,13 +44,15 @@ Listed here are several common terms you might see in discussions among programm
 * emacs, vi, nano, pico, ... - Text editors.
 * C, C++, C#, Objective C, Java, Python, Lisp, Ruby, JavaScript, PHP, ... - Programming languages.
 * Turing Complete - A computational system is turing complete if it can, in theory, be used to compute anything that a computer can.  Turing completeness is a category; all programming languages are Turing complete (though a turing complete system need not be a linguistic construct).
-* Compiler - A tool which turns source code into machine code.
+* Compiler - A tool which turns source code into executable machine code.
 * Interpreter - A tool which executes a program in source code format.
 * Regression - A change to a piece of software that results in the introduction of a bug.
 * Pessimization - A play on the word "optimization" - a pessimization makes code slower to execute while an optimization makes it faster.
 
 A useful resource for exploring more terms like these is the [Jargon File](http://catb.org/jargon/html/).
 
+
+[//]: # (<Comment>
 ## Different Jobs Demand Different Tools
 There is no "best" programming language.  Different languages have different use cases and some are better than others at different jobs.  For example, say you have a text file like this:
 
@@ -79,6 +80,9 @@ $3 < 60
 AWK is clearly the better tool for the job; even if it is less popular than Python, in general.
 
 At the same time, you'll never find an operating system written in either Python or AWK.  They're the wrong tools for the job.  That kind of task is reserved for *Systems Programming Languages* like C, C++, or Rust.
+
+</Comment>)
+
 
 #### Note: Java is to JavaScript as Car is to Carpet
 This is a very common confusion amongst the uninformed.  Java and Javascript are similar only nominally.  The above title is frequently regurgitated by those "in the know" to demonstrate this fact.
