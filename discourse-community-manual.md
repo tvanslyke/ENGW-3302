@@ -11,7 +11,7 @@ An excellent essay on the culture(s) of FOSS communities, [*The Cathedral and th
 
 
 ## Programming Discourse
-Here we'll walk through some quirks of in the way programmers write and talk as well as some expectations.  These mostly apply to informal discussions, what you might see on a [mailing list](### The Mailing List)
+Here we'll walk through some quirks of in the way programmers write and talk as well as some expectations.  These mostly apply to informal discussions, what you might see on a [mailing list](mailing-list)
 
 
 #### It's the Code, Stupid!
@@ -99,7 +99,7 @@ READMEs will typically come in one of three formats: Text (.txt), [Markdown](htt
 
 Text files are rather self-explanatory, but how about Markdown and ReStructured Text?  Both of these are minimalist [markup languages](https://en.wikipedia.org/wiki/Lightweight_markup_language).  Both are human-readable files containing text that can be processed to generate a more pleasant-looking document.  This manual is written in Markdown and if you're reading this on Github, then you can see what the unprocessed file looks like by navigating to the top of the page and clicking on the 'Raw' button.  You'll find that, while not exactly pretty, the file is perfectly readable as-is.  
 
-### The Mailing List
+### The Mailing List <a name="mailing-list"></a>
 Mailing lists are a very common communication medium for FOSS software projects.  For example, the [Linux Kernel Mailing List](https://lkml.org/) is the primary method for communicating with Linux kernel developers about Linux kernel development.  LLVM has its own mailing list as well, [cfe-commits](https://reviews.llvm.org/p/cfe-commits/).  
 
 Mailing lists are typically used by FOSS developers to communicate changes, proposals, and announcements within their respective projects.  Discourse in this medium is almost always informal but highly technical.  For an example of this mixture, see the converstion on LKML linked [here (** WARNING STRONG LANGUAGE **)](https://lkml.org/lkml/2014/7/24/584).  In that email, Linus Torvalds, who is known for his usage of strong language, angrily attacks GCC (a very popular open-source C compiler) while simultaneously speaking about topics such as register spilling, stack redzoning, and the x86_64 ABI.
