@@ -11,7 +11,7 @@ An excellent essay on the culture(s) of FOSS communities, [*The Cathedral and th
 
 
 ## Programming Discourse
-Here we'll walk through some quirks of in the way programmers write and talk as well as some expectations.  These mostly apply to informal discussions, what you might see on a [mailing list](the-mailing-list)
+Here we'll walk through some quirks of in the way programmers write and talk as well as some expectations.  These mostly apply to informal discussions, what you might see on a [mailing list](#the-mailing-list)
 
 
 #### It's the Code, Stupid!
