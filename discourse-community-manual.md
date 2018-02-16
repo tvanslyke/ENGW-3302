@@ -102,9 +102,9 @@ Text files are rather self-explanatory, but how about Markdown and ReStructured 
 ## The Mailing List 
 Mailing lists are a very common communication medium for FOSS projects.  For example, the [Linux Kernel Mailing List](https://lkml.org/) is the primary method for communicating with Linux kernel developers about Linux kernel development.  LLVM has its own mailing list as well, [cfe-commits](https://reviews.llvm.org/p/cfe-commits/).  
 
-Mailing lists are typically used by FOSS developers to communicate changes, proposals, and announcements within their respective projects.  Discourse in this medium is almost always informal but highly technical.  For an example of this mixture, see the converstion on LKML linked [here (** WARNING STRONG LANGUAGE **)](https://lkml.org/lkml/2014/7/24/584).  In that email, Linus Torvalds, who is known for his usage of strong language, angrily attacks GCC (a very popular open-source C compiler) while simultaneously speaking about topics such as register spilling, stack redzoning, and the x86_64 ABI.
+Mailing lists are typically used by FOSS developers to communicate changes, proposals, and announcements within their respective projects.  Discourse in this medium is almost always informal but highly technical.  For an example of this mixture, see the conversation on LKML linked [here (** WARNING STRONG LANGUAGE **)](https://lkml.org/lkml/2014/7/24/584).  In that email, Linus Torvalds, who is known for his usage of strong language, angrily attacks GCC (a very popular open-source C compiler) while simultaneously speaking about topics such as register spilling, stack redzoning, and the x86_64 ABI.
 
-When communicating in mailing list:
+When communicating in a mailing list:
 * Don't be overly formal, but do try to be polite.
 * Stay on topic.  If you're in an email chain about a proposed patch, talk about the patch and the systems it affects.
 * Keep it short.  Only say what needs to be said; if somebody else already said what you were thinking, then you don't need to add anything.
