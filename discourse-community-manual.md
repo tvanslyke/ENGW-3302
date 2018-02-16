@@ -3,7 +3,7 @@ Free and Open-Source Software (FOSS) refers to software for which the source cod
 
 The FOSS community refers to individuals who are involved in the development of different FOSS projects.  Though members of the FOSS community need not be programmers, they typically are and this document is targeted towards new programmers who are looking to get involved with the FOSS community, but are unsure of where or how to start.  This document will discuss terminology and conventional means of communication within the FOSS community as well as the programming community at large.
 
-Throughout this text, you may find that I use some non-FOSS-specific terms to describe conventions or ideas in the FOSS community without specifying them as such.  For example, if a generalization is made about programmers in the FOSS community, it may read something like: "Programmers will typically do thing X while trying to achieve goal Y".  Please understand that such unqualified generalizations are implicitly FOSS-specific, so the previous text would read: "Programmers in the FOSS comunity ...".  Discussions about the greater programming community as a whole will be explicitly qualified to be so.
+Throughout this text, you may find that I use some non-FOSS-specific terms to describe conventions or ideas in the FOSS community without specifying them as such.  For example, if a generalization is made about programmers in the FOSS community, it may read something like: "Programmers will typically do thing X while trying to achieve goal Y".  Please understand that such unqualified generalizations are implicitly FOSS-specific, so the previous text would read: "Programmers in the FOSS community ...".  Discussions about the greater programming community as a whole will be explicitly qualified to be so.
 
 ## Who Cares About Open-Source Software?
 
@@ -27,10 +27,10 @@ When communicating with other developers in an open-source project, please note 
 One notable exception to this rule is Bitcoin, whose [reference implementation](https://github.com/bitcoin/bitcoin) was originally written by an individual (or group of individuals) under the pseudonym [Satoshi Nakamoto](https://en.wikipedia.org/wiki/Satoshi_Nakamoto).
 
 ### C is the Lingua Franca of Programming
-Though nowadays this has shifted towards Python a bit, partucularly for pseudocode, the C programming language is something every sofware developer is expected to have at least a cursory understanding of.  Although a beginner won't be expected to know much outside of their first language, at some point it *will* be expected that they have the ability to look at a chunk of C code and be able to vaguely reason about what is going on.  C is also the language of choice for many open source projects like CPython and the Linux Kernel.  Complete ignorance of C will keep many communication barriers erected for those trying to get involved in many big-name FOSS projects.
+Though nowadays this has shifted towards Python a bit, particularly for pseudocode, the C programming language is something every software developer is expected to have at least a cursory understanding of.  Although a beginner won't be expected to know much outside of their first language, at some point it *will* be expected that they have the ability to look at a chunk of C code and be able to vaguely reason about what is going on.  C is also the language of choice for many open source projects like CPython and the Linux Kernel.  Complete ignorance of C will keep many communication barriers erected for those trying to get involved in many big-name FOSS projects.
 
 ### Your Definition of the Word "Hacker" Is Wrong
-The word "hacker" gets thrown around a lot nowadays by the media; the term has become so commonplace in the English-speaking world that that one can expect just about anybody to know what you mean when you use the word.  Unfornately, what you think about when you hear the word "hacker" is a bastardization of the term's original meaning.  Here is the definition of "hacker" according to the Jargon File:
+The word "hacker" gets thrown around a lot nowadays by the media; the term has become so commonplace in the English-speaking world that that one can expect just about anybody to know what you mean when you use the word.  Unfortunately, what you think about when you hear the word "hacker" is a bastardization of the term's original meaning.  Here is the definition of "hacker" according to the Jargon File:
 
 > A person who enjoys exploring the details of programmable systems and how to stretch their capabilities, as opposed to most users, who prefer to learn only the minimum necessary. RFC1392, the Internet Users' Glossary, usefully amplifies this as: A person who delights in having an intimate understanding of the internal workings of a system, computers and computer networks in particular.
 
@@ -53,7 +53,7 @@ Shown here is a non-exhaustive list of several common terms you might see in dis
 * Metal/Bare Metal - Low level stuff.  Code or programming languages that are "near the metal" are low-level and less abstract.
 * Interface - The means with which a software component can be interacted with.  An interface is just a description of "what it does" and "how to use it", without the "how it works" part.
 * Implementation - An implementation, in software, is the "how it works" part of an *interface* (defined above).  More correctly, it is not a part of the interface, but instead it is the set of inner workings that are accessible via the corresponding interface.  A keyboard is an interface to a computer, but the computer (plus operating system and associated firmware/software) does the actual work.
-* Turing Complete - A computational system is turing complete if it can, in theory, be used to compute anything that a computer can.  Turing completeness is a category; all programming languages are Turing complete (though a turing complete system need not be a linguistic construct).
+* Turing Complete - A computational system is Turing complete if it can, in theory, be used to compute anything that a computer can.  Turing completeness is a category; all programming languages are Turing complete (though a Turing complete system need not be a linguistic construct).
 * Compiler - A tool which turns source code into executable machine code.
 * Interpreter - A tool which executes a program in source code format.
 * Regression - A change to a piece of software that results in the introduction of a bug.
@@ -63,7 +63,7 @@ A useful resource for exploring more terms like these is the [Jargon File](http:
 
 
 # How Programmers Talk to One Another
-Here we'll discuss some of the formats that programmers use to communicate with eachother.
+Here we'll discuss some of the formats that programmers use to communicate with each other.
 
 ## The README
 All software projects should have an associated README file.  The README file tells users and other developers the basics of how to obtain and use the associated software and code.  
@@ -96,7 +96,7 @@ The most common elements of a README, regardless of the languages used in the as
 
 
 ### File Formats: Text, Markdown, ReStructured Text, and more
-READMEs will typically come in one of three formats: Text (.txt), [Markdown](https://en.wikipedia.org/wiki/Markdown) (.md), and [ReStructured Text](https://en.wikipedia.org/wiki/ReStructuredText).  These formats are preferred because they are *simple*; you should be able to open and comforably view a README file in a simple text editor (e.g. Notepad on Windows).  Programmers, in general, like to be able to read and edit files without having to start up a bulky application like, for instance, MS Word.  A good rule of thumb is that if you're writing a README, another programmer should be able to read it in their terminal.
+READMEs will typically come in one of three formats: Text (.txt), [Markdown](https://en.wikipedia.org/wiki/Markdown) (.md), and [ReStructured Text](https://en.wikipedia.org/wiki/ReStructuredText).  These formats are preferred because they are *simple*; you should be able to open and comfortably view a README file in a simple text editor (e.g. Notepad on Windows).  Programmers, in general, like to be able to read and edit files without having to start up a bulky application like, for instance, MS Word.  A good rule of thumb is that if you're writing a README, another programmer should be able to read it in their terminal.
 
 Text files are rather self-explanatory, but how about Markdown and ReStructured Text?  Both of these are minimalist [markup languages](https://en.wikipedia.org/wiki/Lightweight_markup_language).  Both are human-readable files containing text that can be processed to generate a more pleasant-looking document.  This manual is written in Markdown and if you're reading this on Github, then you can see what the unprocessed file looks like by navigating to the top of the page and clicking on the 'Raw' button.  You'll find that, while not exactly pretty, the file is perfectly readable as-is.  
 
@@ -123,7 +123,7 @@ function fibonacci(input n) is
 	else 
 		return fibonacci(n - 1) + fibonacci(n - 2)
 ```
-This representation of the algorithm relies primarilly on plain English.  Pseudocode is intended to be clear, consise, and most importantly, readable.  Keep in mind your audience when you're writing pseudocode.  C, C++, C#, or Java programmers would likely prefer pseudocode that looks like more like C while Python or Ruby programmers would prefer a more Python-like syntax.  There are no hard and fast rules to writing pseudocode, just rules of thumb and a reliance on common sense.
+This representation of the algorithm relies primarily on plain English.  Pseudocode is intended to be clear, concise, and most importantly, readable.  Keep in mind your audience when you're writing pseudocode.  C, C++, C#, or Java programmers would likely prefer pseudocode that looks like more like C while Python or Ruby programmers would prefer a more Python-like syntax.  There are no hard and fast rules to writing pseudocode, just rules of thumb and a reliance on common sense.
 
 # Getting Involved in Open-Source Software Projects
 If you would like to get involved in any FOSS projects, the best thing you can do is find a project you're interested in and start playing with the code!  For example, if you enjoy programming in both C and Python, perhaps you might also enjoy writing CPython extensions in C.  Once you get the hang of the project's conventions and design, take a look at the project's README to see how you can get started with contributing.  Beyond that, there's not much advice to be given.  
@@ -133,7 +133,7 @@ Some projects are notorious for having very hard-to-understand code, like GCC, w
 Once you've found a project that you're interested in, a few small tips are:
 * Be sure to read the documentation and learn the conventions of the project.
 * Test your code before submitting!  Nobody likes it when contributions lead to bugs.
-* Start small!  Completely rewriting an entire portion of the codebase, even if it's an improvement, probably won't be well recieved.  After all, now *only you* understand how that component works.
+* Start small!  Completely rewriting an entire portion of the codebase, even if it's an improvement, probably won't be well received.  After all, now *only you* understand how that component works.
 * Lastly, be polite and agreeable.  If the project's maintainers ask you to make a modification to your patch, they probably have a good reason.  Arguing with them is a good way to get your patch rejected.  If they're asking you to make changes, they obviously think your patch is worthwhile!  Otherwise they would've just outright rejected it.
 
 Of course, the most important part is that you get involved at all.  Programmers are always happy when somebody is interested in their project.  Why else would we bother?  Get out there, use our code and, when you're ready, let us use yours too!
