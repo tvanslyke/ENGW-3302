@@ -13,7 +13,8 @@ An excellent essay on the culture(s) of FOSS communities, [*The Cathedral and th
 
 
 # Programming Discourse
-Here we'll walk through some quirks of in the way programmers write and talk as well as some expectations.  These mostly apply to more dynamic communication mediums like a [mailing list](#the-mailing-list).
+Here we'll walk through some quirks of in the way programmers write and talk as well as some expectations about how communication should occur.  Think of this section as a guide of "what to say" or "how to say it" in general.  Not every convention or best practice is covered here, but some common mistakes and confusions are pointed out so that a newcomer like yourself doesn't get *too* lost when trying to communicate with other programmers (getting a *little* lost is okay and is a rite of passage in the programming community).
+
 
 
 
