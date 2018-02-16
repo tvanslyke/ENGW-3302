@@ -1,9 +1,11 @@
 ## Getting Started in the Free and Open-Source Software Community
-Free and Open-Source Software (FOSS) refers to software ... 
+Free and Open-Source Software (FOSS) refers to software for which the source code is made available to users (making it open-source), and for which users of the software are granted permission to modify and redistribute the software.  Some well-known examples of FOSS projects are Firefox, VLC Media Player, and the Linux Kernel.
+
+The FOSS community refers to individuals who are involved in the development of different FOSS projects.  Though members of the FOSS community need not be programmers, they typically are and this document is targeted towards new programmers who are looking to get involved with the FOSS community, but are unsure of where or how to start.  This document will discuss terminology and conventional means of communication within the FOSS community as well as the programming community at large.
 
 Throughout this text, you may find that I use some non-FOSS-specific terms to describe conventions or ideas in the FOSS community without specifying them as such.  For example, if a generalization is made about programmers in the FOSS community, it may read something like: "Programmers will typically do thing X while trying to achieve goal Y".  Please understand that such unqualified generalizations are implicitly FOSS-specific, so the previous text would read: "Programmers in the FOSS comunity ...".  Discussions about the greater programming community as a whole will be explicitly qualified to be so.
 
-## Who Cares About Open-Source Software?
+### Who Cares About Open-Source Software?
 
 Nowadays, entities like [Intel](https://github.com/intel), [Google](https://github.com/google), and even [Microsoft](https://github.com/Microsoft) maintain and contribute to open-source software projects.  Intel and Google, in particular, contribute heavily to what is widely considered to be *the* quintessential open-source project, the [Linux Kernel](https://en.wikipedia.org/wiki/Linux_kernel).  Even if you, the reader, are not interested in Free (as in freedom) and Open-Source Software (FOSS), employers certainly are.
 
@@ -11,20 +13,22 @@ An excellent essay on the culture(s) of FOSS communities, [*The Cathedral and th
 
 
 ## Programming Discourse
-Here we'll walk through some quirks of in the way programmers write and talk as well as some expectations.  These mostly apply to informal discussions, what you might see on a [mailing list](#the-mailing-list)
+Here we'll walk through some quirks of in the way programmers write and talk as well as some expectations.  These mostly apply to more dynamic communication mediums like a [mailing list](#the-mailing-list).
 
 
-#### It's the Code, Stupid!
-The most important thing to understand about (most) FOSS projects and communities, is that it's the *code* that counts.  You could be the smartest guy in the room but if your code is no good, nobody is going to really care.  Personal matters are not really discussed at all.  In fact, it is not unheard of for anonymous individuals to submit minor patches to large FOSS projects.  
 
 ### Conventions
+Here are some general conventions to follow in the FOSS community.  These tidbits of information apply in most communication mediums.
+
 #### Real Names Please
-While we're on the topic of anonymity, just note that real names are quite strongly preferred to pseudonyms (like an account names).  This mostly applies to contributors; bug reports can typically come from anybody under any name.  One notable exception to this rule is Bitcoin, whose [reference implementation](https://github.com/bitcoin/bitcoin) was originally written by an individual (or group of individuals) under the pseudonym [Satoshi Nakamoto](https://en.wikipedia.org/wiki/Satoshi_Nakamoto).
+When communicating with other developers in an open-source project, please note that real names are quite strongly preferred to pseudonyms (like an account names).  This mostly applies to contributors; bug reports can typically come from anybody under any name.  Nonetheless, if you want to be actively involved in a FOSS project, the best thing you can do is 
 
-### C is the Lingua Franca of Programming
-Though nowadays this has shifted towards Python a bit, partucularly for pseudocode, the C programming language is something every sofware developer is expected to have at least a cursory understanding of.  Although a beginner won't be expected to know much outside of their first language, at some point it *will* be expected that they have the ability to look at a chunk of C code and be able to vaguely reason about what is going on.
+One notable exception to this rule is Bitcoin, whose [reference implementation](https://github.com/bitcoin/bitcoin) was originally written by an individual (or group of individuals) under the pseudonym [Satoshi Nakamoto](https://en.wikipedia.org/wiki/Satoshi_Nakamoto).
 
-### Your Definition of the Word "Hacker" Is Wrong
+#### C is the Lingua Franca of Programming
+Though nowadays this has shifted towards Python a bit, partucularly for pseudocode, the C programming language is something every sofware developer is expected to have at least a cursory understanding of.  Although a beginner won't be expected to know much outside of their first language, at some point it *will* be expected that they have the ability to look at a chunk of C code and be able to vaguely reason about what is going on.  C is also the language of choice for many open source projects like CPython and the Linux Kernel.  Complete ignorance of C will keep many communication barriers erected for those trying to get involved in many big-name FOSS projects.
+
+#### Your Definition of the Word "Hacker" Is Wrong
 The word "hacker" gets thrown around a lot nowadays by the media; the term has become so commonplace in the English-speaking world that that one can expect just about anybody to know what you mean when you use the word.  Unfornately, what you think about when you hear the word "hacker" is a bastardization of the term's original meaning.  Here is the definition of "hacker" according to the Jargon File:
 
 > A person who enjoys exploring the details of programmable systems and how to stretch their capabilities, as opposed to most users, who prefer to learn only the minimum necessary. RFC1392, the Internet Users' Glossary, usefully amplifies this as: A person who delights in having an intimate understanding of the internal workings of a system, computers and computer networks in particular.
@@ -33,22 +37,21 @@ This is the term's original meaning as defined by the hacker community.  At some
 
 Thus, within the larger programming community, the terms "hacker", "hacking", or similar, should be taken to mean their *true* definitions, unless context implies that their adopted meanings are being used.
 
-
-## Some Vocabulary
+### Some Vocabulary
 Shown here is a non-exhaustive list of several common terms you might see in discussions among programmers, in no particular order:
 
-* svn (Subversion), git, cvs, hg (Mercurial) ... - Version control systems.
-* The Right Thing (TM) - A somewhat sardonic way of referring to a what one might consider the correct algorithm, data structure, or whatever.  Its literal meaning is highly contextual.
-* K&R C - [*The C Programming Language*](https://en.wikipedia.org/wiki/The_C_Programming_Language); both a book and a (quite old) dialect of C.  K&R = Kernighan and Ritchie, the book's authors.
-* Metal/Bare Metal - Low level stuff.  Code or programming languages that are "near the metal" are low-level and less abstract.
-* Release - A version of a piece of software which is considered "finished".  A release is usually associated with a version number, like `gcc-7.2`.  Releases are (usually) immutable; frozen in time.
-* Commit - In reference to version control systems, a commit is a change to source code which has been added to the main version.  Changes can exist before being committed, but such changes are not yet official.
-* Interface - The means with which a software component can be interacted with.  An interface is just a description of "what it does" and "how to use it", without the "how it works" part.
-* Implementation - An implementation, in software, is the "how it works" part of an *interface* (defined above).  More correctly, it is not a part of the interface, but instead it is the set of inner workings that are accessible via the corresponding interface.  A keyboard is an interface to a computer, but the computer (plus operating system and associated firmware/software) does the actual work.
+* C, C++, C#, Objective C, Java, Python, Lisp, Ruby, JavaScript, PHP, ... - Programming languages.
 * OS - Operating system.
 * Debian, Ubuntu, Manjaro, ... - Linux distributions.
 * emacs, vi, nano, pico, ... - Text editors.
-* C, C++, C#, Objective C, Java, Python, Lisp, Ruby, JavaScript, PHP, ... - Programming languages.
+* Release - A version of a piece of software which is considered "finished".  A release is usually associated with a version number, like `gcc-7.2`.  Releases are (usually) immutable; frozen in time.
+* Commit - In reference to version control systems, a commit is a change to source code which has been added to the main version.  Changes can exist before being committed, but such changes are not yet official.
+* svn (Subversion), git, cvs, hg (Mercurial) ... - Version control systems.
+* The Right Thing (TM) - A somewhat sardonic way of referring to a what one might consider the correct choice of algorithm, data structure, or anything really.  Its literal meaning is highly contextual, but it is almost always in reference to a design choice.
+* K&R C - [*The C Programming Language*](https://en.wikipedia.org/wiki/The_C_Programming_Language); both a book and a (quite old) dialect of C.  K&R = Kernighan and Ritchie, the book's authors.
+* Metal/Bare Metal - Low level stuff.  Code or programming languages that are "near the metal" are low-level and less abstract.
+* Interface - The means with which a software component can be interacted with.  An interface is just a description of "what it does" and "how to use it", without the "how it works" part.
+* Implementation - An implementation, in software, is the "how it works" part of an *interface* (defined above).  More correctly, it is not a part of the interface, but instead it is the set of inner workings that are accessible via the corresponding interface.  A keyboard is an interface to a computer, but the computer (plus operating system and associated firmware/software) does the actual work.
 * Turing Complete - A computational system is turing complete if it can, in theory, be used to compute anything that a computer can.  Turing completeness is a category; all programming languages are Turing complete (though a turing complete system need not be a linguistic construct).
 * Compiler - A tool which turns source code into executable machine code.
 * Interpreter - A tool which executes a program in source code format.
@@ -57,9 +60,6 @@ Shown here is a non-exhaustive list of several common terms you might see in dis
 
 A useful resource for exploring more terms like these is the [Jargon File](http://catb.org/jargon/html/).
 
-
-#### Note: Java is to JavaScript as Car is to Carpet
-This is a very common confusion amongst the uninformed.  Java and Javascript are similar only nominally.  The above title is frequently regurgitated by those "in the know" to demonstrate this fact.
 
 ## How Programmers Talk to One Another
 Here we'll discuss some of the formats that programmers use to communicate with eachother.
@@ -91,7 +91,7 @@ The most common elements of a README, regardless of the languages used in the as
         1. Documentation should be provided that explains what your code does and how others might use your code in their own projects, even if that wasn't your intention.
         2. Again, follow the conventions of your language.  The Python guys like to use [Sphinx](http://www.sphinx-doc.org/en/master/) for documentation, Java uses [JavaDoc](https://en.wikipedia.org/wiki/Javadoc), and C++ projects may use [Doxygen](https://en.wikipedia.org/wiki/Doxygen).
 4. Contributing and Bug Reports
-	1. Though not strictly required, it's good form to provide a method for others to contribute and report bugs in your project.
+	1. Though not strictly required, it's good form to provide a method for others to contribute and report bugs in your README.
 
 
 #### File Formats: Text, Markdown, ReStructured Text, and more
@@ -129,15 +129,10 @@ If you would like to get involved in any FOSS projects, the best thing you can d
 
 Some projects are notorious for having very hard-to-understand code, like GCC, while others, like CPython, are known for exactly the opposite.  Some projects have only a few core developers while others have hundreds or thousands.  If you want to get involved, just give it your best shot on something you're interested in.  
 
-Once you've found a project, a few small tips are:
+Once you've found a project that you're interested in, a few small tips are:
 * Be sure to read the documentation and learn the conventions of the project.
 * Test your code before submitting!  Nobody likes it when contributions lead to bugs.
 * Start small!  Completely rewriting an entire portion of the codebase, even if it's an improvement, probably won't be well recieved.  After all, now *only you* understand how that component works.
 * Lastly, be polite and agreeable.  If the project's maintainers ask you to make a modification to your patch, they probably have a good reason.  Arguing with them is a good way to get your patch rejected.  If they're asking you to make changes, they obviously think your patch is worthwhile!  Otherwise they would've just outright rejected it.
 
-
-
-## Some Closing Remarks
-
-
-
+Of course, the most important part is that you get involved at all.  Programmers are always happy when somebody is interested in their project.  Why else would we bother?  Get out there, use our code and, when you're ready, let us use yours too!
