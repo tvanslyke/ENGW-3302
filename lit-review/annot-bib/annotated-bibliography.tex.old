@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+
+\usepackage{hyperref}
+% ArXiv 
+%      * https://arxiv.org/pdf/1711.07606.pdf
+%      * https://arxiv.org/pdf/1211.4101.pdf
+%      * https://arxiv.org/pdf/1612.06668
+% Programming Languages Design and Implementation (PLDI) Conferences:
+%      * https://conf.researchr.org/home/pldi-2016
+% Principles of Programming Languages (POPL) Symposium:
+%      * http://sigplan.org/OpenTOC/popl17.html (3 papers specifically on compiler optimizations)
+%
+\begin{document}
+\tableofcontents
+\section{LaminarIR: Compile-Time Queues for Structured Streams}
+\url{ 
+	http://delivery.acm.org/10.1145/2740000/2737994/p121-ko.pdf?ip=129.10.9.26&id=2737994&acc=ACTIVE%20SERVICE&key=AA86BE8B6928DDC7%2EC2B8A117C7A71F5A%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&__acm__=1519233685_d494640d060f6230ad18b9adf3e3143b
+} 
+\section{Improving Compiler Scalability: Optimizing Large Programs at Small Price}
+\url{ 
+	http://delivery.acm.org/10.1145/2740000/2737954/p143-mehta.pdf?ip=129.10.9.26&id=2737954&acc=ACTIVE%20SERVICE&key=AA86BE8B6928DDC7%2EC2B8A117C7A71F5A%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&__acm__=1519233866_d7f01c2e69727a2b32519e588a378b5d
+} 
+\section{Surgical Precision Jit Comilers}
+\url{ 
+	https://www.cs.purdue.edu/homes/rompf/papers/rompf-pldi14.pdf
+} 
+\section{Cache Locality Optimization for Recursive Programs}
+\url{ 
+	http://jlifflander.com/papers/pldi-recursive.pdf
+} 
+Proposes a runtime solution to the problem of optimizing recursive or call-graph-hidden data accesses that may not be cache-optimal. \\
+Proposes solution involving automatic parallelization. \\
+\section{A Framework for Enhancing Data Reuse via Associative Reordering}
+\url{ 
+	http://web.cse.ohio-state.edu/~pouchet.2/doc/pldi-article.14.pdf
+} 
+\section{Tracing Compilation by Abstract Interpretation} 
+\url{ 
+	https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/popl14.pdf
+} 
+
+\section{Software Prefetching for Indirect Memory Accesses} 
+\url{ 
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwj4oI7MqsLZAhUGSK0KHVB_AkoQFgguMAA&url=https%3A%2F%2Fwww.cl.cam.ac.uk%2F~sa614%2Fpapers%2FSoftware-Prefetching-CGO2017.pdf&usg=AOvVaw3GHxRF_M7dME2gXmKbgzmG
+} 
+
+\section{Clairvoyance: Look-ahead compile-time scheduling}
+\url{ 
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=0ahUKEwiGp7Ljq8LZAhUFbq0KHW85CcAQFggxMAE&url=http%3A%2F%2Fwww.sjalander.com%2Fresearch%2Fpdf%2Fsjalander-cgo2017.pdf&usg=AOvVaw3eBCpcYhbmcS5NsC8Z1ESo
+} 
+
+\section{Symbolic Range Analysis of Pointers}
+\url{
+homepages.dcc.ufmg.br/~fernando/publications/papers/CGO16_paisante.pdf
+} 
+
+\url{ 
+http://cgo.org/cgo2018/
+} 
+
+\end{document}
