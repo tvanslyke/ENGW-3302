@@ -1,0 +1,148 @@
+\documentclass{article}
+
+\usepackage{todonotes}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\lstset{language=C++,
+	basicstyle=\small\ttfamily,
+	keywordstyle=\color{blue},
+	stringstyle=\color{red},
+	commentstyle=\color{green},
+	morecomment=[l][\color{magenta}]{\#}
+}
+
+\newcommand{\uniqueptr}{\texttt{std::unique\_ptr}}
+\newcommand{\sharedptr}{\texttt{std::shared\_ptr}}
+\newcommand{\CppNew}{\texttt{new}}
+\newcommand{\CppDelete}{\texttt{delete}}
+
+
+% font stuff
+\usepackage{palatino}
+\usepackage{helvet}
+\usepackage[scaled]{beramono}
+\usepackage[T1]{fontenc}
+
+\newcommand{\placeholdertext}[1]{
+	\noindent{\color{red}{#1}}
+}
+
+\title{An Open Letter to Educators Responsible for Teaching C++}
+\author{John Doe}
+
+\begin{document}
+
+\maketitle
+
+
+
+
+
+\section*{The Problem}
+Many university-level, introductory courses in C++ teach an outdated style that is unacceptable in 2018.  C++11 was a big game changer for the language that introduced \emph{\href{https://en.wikipedia.org/wiki/C\%2B\%2B11}{many}} new features that have very drastically changed the way we write C++ today.  In spite of this, many courses that teach C++, particularly courses where C++ is used as a vessel for teaching other programming concepts (e.g. algrothims and data structures), teach it as though we're still living in the previous millenium (C++98).
+
+\section*{About Me and Other Introductory Stuff}
+I'm primarily a hobbyist C++ programmer who likes to use bleeding-edge tools, who follows the the latest updates from the C++ standards committee, and who some might label as a ``language lawyer''.  At the same time, I'm currently studying electrical and computer engineering at Northeastern University in Boston.  In the just the past two years at NEU I've taken four courses that teach C++, all of which assume that students have little-to-no experience with the language.  Of these four courses, two suffer from teaching C++98isms, one teaches modern style, and the last is so extremely introductory that it is unfair to pass judgement on it.  In this letter, I will be simultaneously be drawing on my experiences as a student, active C++ community member, and occasional open-source C++ project contributor. 
+
+I would also like to point out ahead of time that I have had only positive experiences with the teaching staff at Northeastern University.  In no way is this letter meant to imply that the quality of education at NEU is particularly lacking; this problem is \emph{not} exclusive to NEU and I'm most certainly not the first person to talk about this.  Two great talks that address problems in C++ education come from \href{https://www.youtube.com/watch?v=YnWhqhNdYyk}{Kate Gregory} and \href{https://www.youtube.com/watch?v=fX2W3nNjJIo}{Bjarne Stroustrup}.  \todo{Clean this sentence up.}I would strongly encourage any educators who are reading this to watch them, especially if you find arguments coming from a student to be unconvincing.
+
+
+\todo{This needs reorganization and refinement.} The main point here is that when C++ is improperly used as a means to teach other concepts it results in bad C++ programmers.  Some courses really ought to be using, for example, C as the teaching language because idiomatic C code more closely matches what the content of the course addresses.  \textbf{If you're going to teach a programming language as a side effect of teaching other concepts, choose one that fits the course content.  Doing otherwise risks teaching students bad practices.}
+
+\section*{Specific Issues, Why They're Problematic, and What to do Instead}
+
+\subsection*{Stop Teaching \CppNew{} and \CppDelete{}}
+Really.  In C++11, there is (almost\footnote{The exception here is that construction of a \uniqueptr{} requires using \CppNew{} in C++11. C++14 introduced the exception-safe \texttt{std::make\_unique} to address this problem.}) no reason to use the \CppNew{} and \CppDelete{} keywords directly anymore, and teaching students how to use them before introducing the standard containers (\texttt{std::vector} in particular) is harmful.  
+
+
+\placeholdertext{Address the following:}
+\begin{itemize}
+	\item Teaching STL containers (particularly \texttt{std::vector}) before raw memory allocation, \emph{especially} in ``Intro to C++''-like courses.
+	\item Even in courses that aspire to teach ``low-level'' concepts like memory management, \CppNew{} and \CppDelete{} are still bad things to teach.
+	\begin{itemize}
+		\item ``Real'' code doesn't actually use them; modern containers are implemented with \texttt{Allocator}s.
+		\item If you really must teach this in a course where students have no prior experience with C++, then perhaps you really want to be teaching C.  (hammer this one home, it's important)
+	\end{itemize}
+	\item Teaching \CppNew{} and \CppDelete{} first leads to the misconception that \texttt{std::vector} and other containers are somehow slower than by-hand memory management.
+	\item Exception to the rule is \CppNew{}ing up objects for polymorphic purposes. 
+	\begin{itemize}
+		\item Stress the importance of \emph{only} using \uniqueptr{} and \sharedptr{}; \CppDelete{}ing by hand is bad.
+		\item Can teach polymorphism by using references. Don't need heap allocation! (reference Kate Gregory talk - she addresses this very well)
+		\begin{itemize}
+			\item This is exactly how \texttt{iostream}s work.  Teaching polymorphism without pointers (at first) is a \textsf{Good Thing}\texttrademark{}.
+		\end{itemize}
+	\end{itemize}
+	\item Overall, make sure that all of your students know that they should \emph{not} be using \CppNew{} and \CppDelete{} by hand in ``actual'' code.
+\end{itemize}
+
+
+\placeholdertext{Need a better code sample.}
+\begin{lstlisting}[language=C++]
+int* read_numbers_from_file(std::istream& src, std::size_t count)
+{
+	int* numbers = new int[count];
+	for(std::size_t i = 0; i < count; ++i)
+		src >> numbers[i];
+	return numbers;
+}
+\end{lstlisting}
+
+The above code introduces several opportunities for memory leaks, is \emph{not} exception safe, \ldots.  
+
+
+
+
+
+
+
+
+\subsection*{Teach the Standard Library!}
+\placeholdertext{Address the following:}
+\begin{itemize}
+	\item Vocabulary types like \texttt{std::vector}, \texttt{std::string}, \ldots
+	\item In an ``Algorithms and Data Structures''-like course, \emph{please} follow the STL conventions.
+	\begin{itemize}
+		\item Leave virtual functions out of it!  This isn't Java, leave it for the OOP courses.
+		\item It's okay to reinvent the wheel if you want to teach how wheels work; just make sure that students know how to use the wheels in the STL (vocabulary types are important!)
+	\end{itemize}
+	\item Address the ``the STL is too advanced for beginners'' misconception.
+	\begin{itemize}
+		\item \CppNew{}/\CppDelete{} are advanced tools (very easy to use them incorrectly).
+		\item Code samples would help quite a bit here.
+	\end{itemize}
+\end{itemize}
+
+
+
+\subsection*{Smells Like Java}
+\placeholdertext{Address the following:}
+\begin{itemize}
+	\item Free functions are okay!  Stuffing every algorithm inside of a class type leads to code duplication.
+	\begin{itemize}
+		\item Some might say that this is a stylistic choice.  
+	\end{itemize}
+	\item Excessive Usage of \texttt{virtual}.  Does implementing an inheritence heirarchy for some abstract \texttt{Sorter} type actually get you anything meaningful?
+	\begin{itemize}
+		\item Use cases are important:  \texttt{iostream}s are a \emph{good} example of a use-case for dynamic polymorphism, \texttt{Sorter} isn't.  (address \emph{why} - this is important)
+	\end{itemize}
+\end{itemize}
+
+
+
+% Example about array assignment vs vector assignment.
+
+
+
+
+
+
+
+\end{document}
