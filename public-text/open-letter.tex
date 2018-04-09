@@ -39,12 +39,8 @@
 \author{John Doe}
 
 \begin{document}
-
+\raggedright
 \maketitle
-
-
-
-
 
 \section*{The Problem}
 Many university-level, introductory courses in C++ teach an outdated style that is unacceptable in 2018.  C++11 was a big game changer for the language that introduced \emph{\href{https://en.wikipedia.org/wiki/C\%2B\%2B11}{many}} new features that have very drastically changed the way we write C++ today.  In spite of this, many courses that teach C++, particularly courses where C++ is used as a vessel for teaching other programming concepts (e.g. algrothims and data structures), teach it as though we're still living in the previous millenium (C++98).
@@ -57,7 +53,16 @@ I would also like to point out ahead of time that I have had only positive exper
 
 \todo{This needs reorganization and refinement.} The main point here is that when C++ is improperly used as a means to teach other concepts it results in bad C++ programmers.  Some courses really ought to be using, for example, C as the teaching language because idiomatic C code more closely matches what the content of the course addresses.  \textbf{If you're going to teach a programming language as a side effect of teaching other concepts, choose one that fits the course content.  Doing otherwise risks teaching students bad practices.}
 
+\section*{Modern C++ and Why You Should Teach it}
+C++11 was a \emph{very} hefty update to a language that hadn't seen much love since 1998, the year the language was first standardized (C++03, was essentially just a mishmash of bug fixes).  The C++11 update introduced \emph{many} non-trivial changes that have drastically affected the way C++ is written today:  \texttt{auto} type deduction, move semantics, lambdas, \lstinline{constexpr}, \lstinline{nullptr}, range-\lstinline{for}, \lstinline{enum class}, ``magic \lstinline{static}s'', uniform initialization syntax, perfect forwarding, \lstinline{using} type \& template aliases, \lstinline{decltype}, variadic templates, user-defined literals, \lstinline{static_assert}, \lstinline{[[attributes]]}, and explicitly \lstinline{default}ed/\lstinline{delete}d functions.  Additionally, library changes included a modern random number library, native concurrency support with threads \& asynchronous execution, \lstinline{std::unique_ptr} \& \lstinline{std::shared_ptr}, \lstinline{std::tuple} (made possible by variadic templates), hash tables \& sets, regular expressions, \lstinline{std::chrono}, and the \lstinline{type_traits} header.  C++11 was a huge game-changer for the language and has seen widespread adoption in all but the most firmly-entrenched legacy codebases.
+
+Now I'm not saying that you should teach all or even most of the above features to new students; many of them are for fairly advanced use-cases.  Instead, I want to make it clear how much of a difference the new language standard has made.  Good C++11 code looks very different from good C++98/03 code.  Best practices in 2018 are not what they were a decade ago.  It's also important to note that the changes from C++11 (and C++14 \& C++17) are indicative of the direction that the C++ community is trying to move in\todo{fix this sentence}.  All of these changes happened because members of the C++ community proposed changes to the standard and a committee consisting largely of community members, academics, and representatives from interested firms (Google, Microsoft, Facebook, Bloomberg, \ldots) approved the changes.  The community wants C++ to be a safer, simpler language to program in.  Employers want their software engineers to be writing better, more maintainable code.  Teaching students bad, non-standard, or outdated practices does them a disservice, especially when they are left with the belief that the way they write C++ is perfectly acceptable and normal.  It's also unfair to the C++ community members who are working hard to make the language simpler and easier to use.
+
+\subsection*{Stop Teaching \CppNew{} and \CppDelete{}}
+I actually only started picking up C++ around 2-3 years ago myself.  Like many others, my first experience with programming was an introductory course that was taught in Java and introduced OOP concepts.  This is a fairly common story, though Python has been gaining momentum as a teaching language too.  Either way, C++ 
+
 \section*{Specific Issues, Why They're Problematic, and What to do Instead}
+
 
 \subsection*{Stop Teaching \CppNew{} and \CppDelete{}}
 Really.  In C++11, there is (almost\footnote{The exception here is that construction of a \uniqueptr{} requires using \CppNew{} in C++11. C++14 introduced the exception-safe \texttt{std::make\_unique} to address this problem.}) no reason to use the \CppNew{} and \CppDelete{} keywords directly anymore, and teaching students how to use them before introducing the standard containers (\texttt{std::vector} in particular) is harmful.  
@@ -136,8 +141,6 @@ The above code introduces several opportunities for memory leaks, is \emph{not} 
 \end{itemize}
 
 
-
-% Example about array assignment vs vector assignment.
 
 
 
