@@ -87,9 +87,9 @@ C++11 was a \emph{very} hefty update to a language that hadn't seen much love si
 
 Now I'm not saying that you should teach all or even most of the above features to new students; many of them are for fairly advanced use-cases.  Instead, I want to make it clear how much of a difference the new language standard has made.  Good C++11 code looks very different from good C++98/03 code.  Best practices in 2018 are not what they were a decade ago.  It's also important to note that the changes from C++11 (and C++14 \& C++17) are indicative of the direction that the C++ community is trying to move in\todo{fix this sentence}.  All of these changes happened because members of the C++ community proposed changes to the standard and a committee consisting largely of community members, academics, and representatives from interested firms (Google, Microsoft, Facebook, Bloomberg, \ldots) approved the changes.  The community wants C++ to be a safer, simpler language to program in.  Employers want their software engineers to be writing better, more maintainable code.  Teaching students bad, non-standard, or outdated practices does them a disservice, especially when they are left with the belief that the way they write C++ is perfectly acceptable and normal.  It's also unfair to the C++ community members who are working hard to make the language simpler and easier to use.
 
-\subsection*{Teach \CppNew{} and \CppDelete{} Later}
+\section*{Teach \CppNew{} and \CppDelete{} Later}
 % I actually only started picking up C++ around 2-3 years ago myself.  Like many others, my first experience with programming was an introductory course that was taught in Java and introduced OOP concepts.  This is a fairly common story, though Python has been gaining momentum as a teaching language too.  
-\CppNew{} and \CppDelete{} are problematic components of the C++ core language.  They are the ``C++ way'' of allocating memory, supposedly making \lstinline{malloc()} and \lstinline{free()} obscelete.  In reality, \CppNew{} and \CppDelete{} are poor choices for anything other than single-object heap allocations where polymorphic behavior is desired:
+\CppNew{} and \CppDelete{} are problematic components of the C++ core language.  They are the ``C++ way'' of allocating memory, supposedly making \lstinline{malloc()} and \lstinline{free()} obscelete.  In reality, \CppNew{} and \CppDelete{} are poor choices for anything other than single-object heap allocations where polymorphic behavior is desired:\todo{This flows horribly and is super hard to follow.  Fix it.}
 \begin{lstlisting}
 std::unique_ptr<Base> p_base{new Derived};
 \end{lstlisting}
@@ -119,19 +119,10 @@ Teaching \NewAndDelete{} this way will:
 \item Avoids hard-to-debug, memory-related bugs that can occur when students make mistakes while trying to do by-hand \CppNew{}s and \CppDelete{}s.
 \end{itemize}
 
-\subsection*{Teach the Standard Library Early}
-
-This leads nicely into the topic of teaching the standard library or STL\footnote{Technically the STL $\neq$ the standard library but I, like many others, choose to ignore this distinction because nobody actually cares.}.  Typically (in the courses I have taken), \lstinline{std::string}s are introduced very early on.  This is good!  However, other core components of the STL are not introduced until towards the end of the course.
-
-In my experience, neglecting the STL typically occurs because courses either 
-
-For many students, \CppNewArray{} is the first way 
-
-
 \subsection*{Smells Like Java}
-There's a particular style of C++ programming I've seen that I like to call ``Java with pointers''\footnote{It's a play on the term ``C with classes''.  I'm hilarious.}.  ``Java with pointers'' is characterized by excessive use of the \lstinline{virtual} \& \lstinline{new} keywords, and reinventing the Java standard library with classes like \lstinline{ArrayList} that have methods like \lstinline{T ArrayList<T>::Get(int i);}.  In one course, we even implemented an interface called \lstinline{Iterator} with methods like \lstinline{bool Iterator<T>::HasNext();} and \lstinline{T Iterator<T>::Next();}.  That doesn't just smell like Java; that is exactly \texttt{java.util.Iterator}, modulo camel-case.
+There's a particular style of C++ programming I've seen that I like to call ``Java with pointers''\footnote{It's a play on the term ``C with classes''.  I'm hilarious.}.  ``Java with pointers'' is characterized by excessive use of the \lstinline{virtual} \& \lstinline{new} keywords, and reinventing the Java standard library with classes like \lstinline{ArrayList} that have methods like \lstinline{T ArrayList<T>::Get(int i);}.  In one course, we even implemented an interface called \lstinline{Iterator} that had \lstinline{virtual bool Iterator<T>::HasNext();} and \lstinline{virtual T Iterator<T>::Next();} methods.  That doesn't just smell like Java; that is exactly \texttt{java.util.Iterator}, modulo camel-case.
 
-The thing is, C++ also has iterators.  In fact, iterators in C++ are a fundamental component of the STL.  However, they look \emph{nothing} like the \lstinline{Iterator} you would find in Java; Java's iterators more closely resemble the Iterator Pattern from \texttt{Design Patterns}.  C++'s iterators are a set of \emph{concepts} that each model a subset of pointer-like behaviors.  They offer a much richer set of behaviors and are intended to allow for generic programming.  They are the basis of the STL, allowing C++ programmers to write generic code that works seamlessly with the rest of the standard library. 
+The thing is, C++ also has iterators.  In fact, iterators in C++ are a fundamental component of the STL.  However, they look \emph{nothing} like the \lstinline{Iterator} you would find in Java; Java's iterators more closely resemble the Iterator Pattern described in \textit{Design Patterns}.  C++'s iterators, on the other hand, are a set of \emph{concepts} that each model a subset of pointer-like behaviors.  They offer a much richer set of behaviors and are intended to allow for generic programming.  They are the basis of the STL, allowing C++ programmers to write generic code that works seamlessly with the rest of the standard library.
 
 \begin{lstlisting}
 // Erase all odd numbers in the container 'cont' using c++-style 
@@ -139,8 +130,13 @@ The thing is, C++ also has iterators.  In fact, iterators in C++ are a fundament
 auto is_odd = [](auto number){
 	return static_cast<bool>(number % 2);
 };
+
+// STL-style erase() member function for the container 
+// takes iterators as arguments.
 cont.erase(
-	remove_if(begin(cont), end(cont), is_odd),
+	// pass iterators to the 'std::remove_if()' algorithm, 
+	// which returns an iterator.
+	remove_if(begin(cont), end(cont), is_odd), 
 	end(cont)
 );
 \end{lstlisting}
@@ -153,6 +149,7 @@ cont.erase(
 auto is_odd = [](auto number){
 	return static_cast<bool>(number % 2);
 };
+// Heap allocation!  Gotta get that virtual dispatch!
 std::unique_ptr<Iterator<int>> it(get_java_style_iterator(cont));
 while(it->HasNext())
 {
@@ -161,29 +158,70 @@ while(it->HasNext())
 }
 \end{lstlisting}
 
-The problem here isn't that the ``Java-style'' code is less clear (it is less clear, but that's not the problem), it's that it 
+The problem here is not that the ``Java-style'' code is less clear (it is less clear, but that's not the problem).  The problem is that iterators are a ``solved problem'', so to speak, in C++.  C++ programmers recognize and understand STL-style iterators. They communicate intent: ``I need to do some work that involves traversing this sequence of objects.''.  The ``Java-style'' iterator needlessly goes against the grain.  When a student goes to a job interview and is asked ``How would you use iterators to erase all odd numbers from a \lstinline{std::vector<int>}?'', you better bet your butt that the interviewer isn't looking for a Java-style solution.  If you're going to teach C++, then please don't fight the language; work \emph{with} it, not against it.
 
-\subsection{I Think Maybe You Should be Teaching C}
-One of the courses that I took at NEU ha
+Now, let's talk about polymorphism and the \lstinline{virtual} keyword.  Dynamic dispatch is a useful tool and it's important that students learn how to use it.  It's even more important, in my opinion, that they learn \emph{when} and \emph{why} they should use it.  Sean Parent, a principle scientist at Adobe, gave a \textbf{fantastic} talk about this in 2017, entitled \href{https://www.youtube.com/watch?v=QGcVXgEVMJg}{Better Code: Runtime Polymorphism}\footnote{Sean has given quite a few talks about ``Better Code''.  I recommend them to anybody interested in becoming a better C++ programmer.}.  His main point is that inheritence is intrusive and leads to tight coupling.  Excessive use of inheritence and virtual functions makes for brittle code.  
 
+That doesn't necessarilly mean that it's a Bad Thing; dynamic dispatch is a powerful tool!  However, unlike Java, C\#, and Python, where every member function is always ``virtual'', in C++ we have a choice.  Not every problem needs to be solved with an inheritence heirarchy.  There are many different ways to sort an array but that doesn't mean that we need add \lstinline{Sorter}, \lstinline{MergeSorter}, and \lstinline{QuickSorter} types to our program just so that we can dynamically change our sorting algorithm.  I posit that 99\% of the time, I have enough information at the call sight to choose my sorting algorithm appropriately for the data I have.  I can just call \lstinline{quick_sort()} directly if I know that the algorithm will likely suit the data; no dynamic dispatch and no ``\lstinline{Sorter}'' objects that just add noise to the code.  Sorting just isn't a very good use-case for polymorphism.
 
+You know what is though?  I/O.  IOStreams, love em or hate em, are actually a pretty neat abstraction: 
+\begin{lstlisting}
+template <class Integer>
+void write_bit_pattern(Integer number, std::ostream& output_stream)
+{
+	static_assert(std::is_integral_v<Integer>);
+	constexpr auto bit_count = sizeof(Integer) * CHAR_BIT;
+	std::bitset<bit_count> bit_pattern{number};
+	output_stream << bit_pattern; 
+}
+\end{lstlisting}
 
+That function could print the bit sequence to \lstinline{stdout} with \lstinline{std::cout}, or to a string with \lstinline{std::ostringstream}, or to a file with \lstinline{std::ofstream}.  Streams are a good candidate for polymorphism because we usually don't care about the actual target of an input/output operation at the call site.  It's a good abstraction and that's important.  When teaching students about polymorphism, try to find a good motivation for it!  Solving every problem with an inheritence heirarchy and dynamic dispatch just isn't good engineering.  The ``why'' is just as important as the ``how'', if not more so.
 
+\section*{I Think Maybe You Should be Teaching C}
+C++ has a reputation of being a ``low-level'' language and is frequently used as a teaching langauge in courses that explore subjects such as memory management, low-level data structures, embedded design, and operating systems.  While I personally believe that C++ is \emph{usually} a better choice than C for solving most problems, using C++ to teach these concepts frequently leads to adoption of the infamous ``C with classes'' style of C++ programming.  It's important to remember that C and C++ are separate programming languages\footnote{Furthermore, there is no programming language called ``C/C++''.  I would implore any readers who use this term to erase it from their vocabulary immediately.} that encourage different style of programming and are suited to solving different sets of problems.
 
-\subsection*{Teach the Standard Library!}
-\placeholdertext{Address the following:}
-\begin{itemize}
-	\item Vocabulary types like \texttt{std::vector}, \texttt{std::string}, \ldots
-	\item In an ``Algorithms and Data Structures''-like course, \emph{please} follow the STL conventions.
-	\begin{itemize}
-		\item Leave virtual functions out of it!  This isn't Java, leave it for the OOP courses.
-		\item It's okay to reinvent the wheel if you want to teach how wheels work; just make sure that students know how to use the wheels in the STL (vocabulary types are important!)
-	\end{itemize}
-	\item Address the ``the STL is too advanced for beginners'' misconception.
-	\begin{itemize}
-		\item \CppNew{}/\CppDelete{} are advanced tools (very easy to use them incorrectly).
-		\item Code samples would help quite a bit here.
-	\end{itemize}
-\end{itemize}
+If your course's learning goals unavoidably mandate that you eschew modern C++ style (e.g. manual memory management), then C might be a better fit.  That is, you should prefer making good C programmers to making subpar C++ programmers.  Understanding how to write good C is extremely valuable in its own right.  For example, learning C has probably done more for my understanding of the importance and motivation behind object-oriented programming than learning C++ or Java has.  That's because in C, you have to follow conventions to enforce OOP.  Consider this collection of functions from the C standard library:
+\begin{lstlisting}
+FILE* fopen(const char* filename, const char* mode);
+int fclose(FILE* stream);
+int fputs(const char* str, FILE* stream);
+char* fgets(char* str, int count, FILE* stream);
+\end{lstlisting}
+
+To the untrained eye, this is just a collection of C functions related to file IO.  What a shining example of messy, non-object oriented code!  Except, what if\ldots
+\begin{lstlisting}
+// constructor 
+FILE* fopen(const char* filename, const char* mode);
+// destructor
+int fclose(FILE* this);
+// member functions
+int fputs(const char* str, FILE* this);
+char* fgets(char* str, int count, FILE* this);
+\end{lstlisting}
+Hmmm\ldots
+\begin{lstlisting}
+class FILE {
+	FILE(const char* filename, const char* mode); // fopen()
+	~File(); // fclose()
+	int puts(const char* str); // fputs()
+	char* gets(char* str, int count); // fgets()
+};
+\end{lstlisting}
+
+What an insight!  The \lstinline{<stdio.h>} header in C is actually a half-decent, if not occasionally inconsistent, example of object-oriented design!  In fact, that's how a lot of C code is written.  The CPython C API is an \emph{excellent} example of this, as are several components of the Linux kernel.  Now maybe I'm old fashioned, but I think this is worth learning.  
+
+At NEU, I took a course where we had an assignment to design a \lstinline{LinkedList} class just like this.  There's a \lstinline{struct LinkedList} and a collection of functions that look like \lstinline{int LinkedList_MethodName(struct LinkedList* self, ...)}.  However, the course was taught in C++.  The very next assignment had us redesign the class using member functions, \lstinline{private} member variables, and all the other built-in OO stuff that you'd learn in any run-of-the-mill C++/C\#/Java course.  The idea behind designing the assignments this way is to show how to use C++'s OO features and how they make life easier with respect to doing it manually (i.e. ``the C way'').
+
+I think it's a valuable lesson, but teaching it so directly is misguided.  The course was actually an introduction to embedded design.  Students learn how to use a Unix system, GCC, make, and C++\footnote{That's only half of the course, the other half focuses on computer architecture, boolean logic, etc.}.  The C++ component of the course really just boiled down to ``C with classes'' plus \lstinline{templates} and \lstinline{virtual} member functions.  No STL (though there was plenty of the C standard library), no exceptions, no references (plenty of pointers thogh!).
+
+The course missed out on an opportunity to make good C programmers who understand how to design an object-oriented API and effectively manage resources.  Instead the course taught how not to design an object-oriented API in C++ (``the C way''), and how nobody really writes C++ anymore (``the C++98/pre C++98/C with classes way'').  In cases like this, a decision really has to be made about what language suits the course because, if you just use C++ because ``it's the newer one'' or ``it's more popular'' then you'll likely end up with students who have a warped unserstanding of what C++ programming is supposed to look like.
+
+\section*{Designing a Course With (or Without) C++}
+Programming languages are a tool.  Some courses are dedicated to teaching students how to use the tool itself. For example, I took a dedicate \emph{Programming in C++} course at NEU.  It was awesome, we learned about \lstinline{auto} type deduction, lambdas, \lstinline{constexpr}, \lstinline{nullptr}, range-\lstinline{for}, uniform initialization syntax, \lstinline{using} type \& template aliases, \lstinline{decltype}, templates, \lstinline{static_assert}, \lstinline{noexcept}, and explicitly \lstinline{default}ed/\lstinline{delete}d functions.  Additionally, we learned how to use the STL to generate random numbers, write concurrent algorithms with \lstinline{std::thread} \& \lstinline{std::async}, manage object lifetimes with \lstinline{std::unique_ptr} \& \lstinline{std::shared_ptr} (and when you should choose each), \lstinline{std::tuple}, \lstinline{std::chrono}, and of course the STL containers and algorithms that have been a staple of C++ programming since 1998.  Of course other courses only use the tool to teach concepts like algorithm + data structure design, embedded design, or object oriented programming.  Such courses certainly shouldn't be expected to cover all of the same content that a dedicated C++ course would.  However, they \emph{absolutely should} be expected to teach students how to use appropriately.  
+
+Teaching students how to allocate memory with \NewAndDelete{} before showing them how to use \lstinline{std::vector} or without showing them how to use smart pointers, does them a disservice.  In a course where teaching students how to manually manage memory is a course objective, then either show them how to do it the modern C++ way or reconsider whether C++ is the appropriate tool for teaching the course material.  
+
+\todo{Finish conclusion}
 
 \end{document}
