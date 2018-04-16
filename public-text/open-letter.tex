@@ -24,7 +24,7 @@
 	commentstyle=\color{commentgrey},
 	morecomment=[l][\color{magenta}]{\#},
 	morekeywords={override, static_assert, nullptr, constexpr, auto, noexcept, decltype},
-	morekeywords=[2]{string, tuple, vector, size_t, Animal, Cat, Dog, unique_ptr, shared_ptr, Derived, Base, ostream, ArrayList, Iterator},
+	morekeywords=[2]{string, tuple, vector, size_t, Animal, Cat, Dog, unique_ptr, shared_ptr, Derived, Base, ostream, ArrayList, Iterator, Integer, FILE, LinkedList},
 	keywordstyle=[2]\color{typegreen},
 	tabsize=4,
 	frame=leftline, 
@@ -71,16 +71,14 @@
 \raggedright
 \maketitle
 
-\section*{The Problem}
-Many university-level, introductory courses in C++ teach an outdated style that is unacceptable in 2018.  C++11 was a big game changer for the language that introduced \emph{\href{https://en.wikipedia.org/wiki/C\%2B\%2B11}{many}} new features that have very drastically changed the way we write C++ today.  In spite of this, many courses that teach C++, particularly courses where C++ is used as a vessel for teaching other programming concepts (e.g. algrothims and data structures), teach it as though we're still living in the previous millenium (C++98).
-
-\section*{About Me and Other Introductory Stuff}
-I'm primarily a hobbyist C++ programmer who likes to use bleeding-edge tools, who follows the the latest updates from the C++ standards committee, and who some might label as a ``language lawyer''.  At the same time, I'm currently studying electrical and computer engineering at Northeastern University in Boston.  In the just the past two years at NEU I've taken four courses that teach C++, all of which assume that students have little-to-no experience with the language.  Of these four courses, two suffer from teaching C++98isms, one teaches modern style, and the last is so extremely introductory that it is unfair to pass judgement on it.  In this letter, I will be simultaneously be drawing on my experiences as a student, active C++ community member, and occasional open-source C++ project contributor. 
+I'm primarily a hobbyist C++ programmer who likes to use bleeding-edge tools, who follows the the latest updates from the C++ standards committee, and who some might label as a ``language lawyer''.  At the same time, I'm currently studying electrical and computer engineering at Northeastern University in Boston.  In the just the past two years at NEU I've taken four courses that teach C++, all of which assume that students have little-to-no experience with the language.  Of these four courses, two suffer from the issues I discuss below, one teaches modern style, and the last is so extremely introductory that it is unfair to pass judgement on it.  In this letter, I will be simultaneously be drawing on my experiences as a student, active C++ community member, and occasional open-source C++ project contributor. 
 
 I would also like to point out ahead of time that I have had only positive experiences with the teaching staff at Northeastern University.  In no way is this letter meant to imply that the quality of education at NEU is particularly lacking; this problem is \emph{not} exclusive to NEU and I'm most certainly not the first person to talk about this.  Two great talks that address problems in C++ education come from \href{https://www.youtube.com/watch?v=YnWhqhNdYyk}{Kate Gregory} and \href{https://www.youtube.com/watch?v=fX2W3nNjJIo}{Bjarne Stroustrup}.  \todo{Clean this sentence up.}I would strongly encourage any educators who are reading this to watch them, especially if you find arguments coming from a student to be unconvincing.
 
 
-\todo{This needs reorganization and refinement.} The main point here is that when C++ is improperly used as a means to teach other concepts it results in bad C++ programmers.  Some courses really ought to be using, for example, C as the teaching language because idiomatic C code more closely matches what the content of the course addresses.  \textbf{If you're going to teach a programming language as a side effect of teaching other concepts, choose one that fits the course content.  Doing otherwise risks teaching students bad practices.}
+\todo{This needs reorganization and refinement.} The main point here is that when C++ is improperly used as a means to teach other concepts it results in bad C++ programmers.  Some courses really ought to be using, for example, C as the teaching language because idiomatic C code more closely matches the content of the course.  \textbf{If you're going to teach a programming language as a side effect of teaching other concepts, choose one that fits the course content.  Doing otherwise risks teaching students bad practices.}  
+
+C++ has found itself in the odd position of simultaneously being compatible with (mostly), more popular than (arguably), and newer than C.  Where C would have otherwise been chosen as a teaching language, C++ is instead.  Sometimes this is appropriate, sometimes not so much, but often the use of C++ looks like C with the additional use of the \lstinline{class}, \lstinline{new}, and \lstinline{virtual} keywords.  This style is commonly referred to as ``C with classes''; it is an outdated style superceded by not only the C++11 standard, but even C++98.  I primarilly take issue with courses that teach or promote this style of C++, particulary where its students have little prior experience with the language.
 
 \section*{Modern C++ and Why You Should Teach it}
 C++11 was a \emph{very} hefty update to a language that hadn't seen much love since 1998, the year the language was first standardized (C++03, was essentially just a mishmash of bug fixes).  The C++11 update introduced \emph{many} non-trivial changes that have drastically affected the way C++ is written today:  \lstinline{auto} type deduction, move semantics, lambdas, \lstinline{constexpr}, \lstinline{nullptr}, range-\lstinline{for}, \lstinline{enum class}, ``magic \lstinline{static}s'', uniform initialization syntax, perfect forwarding, \lstinline{using} type \& template aliases, \lstinline{decltype}, variadic templates, user-defined literals, \lstinline{static_assert}, \lstinline{noexcept}, \lstinline{[[attributes]]}, and explicitly \lstinline{default}ed/\lstinline{delete}d functions.  Additionally, library changes included a modern random number library, native concurrency support with threads \& asynchronous execution, \lstinline{std::unique_ptr} \& \lstinline{std::shared_ptr}, \lstinline{std::tuple} (made possible by variadic templates), hash tables \& sets, regular expressions, \lstinline{std::chrono}, and the \lstinline{type_traits} header.  C++11 was a huge game-changer for the language and has seen widespread adoption in all but the most firmly-entrenched legacy codebases.
@@ -100,11 +98,32 @@ std::unique_ptr<Base> p_base{std::make_unique<Derived>()};
 
 As a digression, it's worth pointing out that \NewAndDelete{} can be avoided entirely when teaching polymorphism\footnote{Kate Gregory advocates teaching polymorphism this way in her talk ``Stop Teaching C!''.}:
 
-\begin{figure}[h]
-	\centering
-	\codefromfile{code/polymorphism-no-pointers.cpp}
-	% framesep=20pt, framexrightmargin=10pt
-\end{figure}
+\begin{lstlisting}
+// A classic OOP taxonomy example.
+struct Animal {
+	virtual ~Animal() = default;
+	virtual std::string speak() const = 0;
+};
+struct Dog: public Animal {
+	std::string speak() const override { return "Woof!"; }
+};
+struct Cat: public Animal {
+	std::string speak() const override { return "Meow!"; }
+};
+
+// Polymorphic function.
+void record_animal_speaking(const Animal& animal, std::ostream& os)
+{ os << animal.speak(); }
+int main() {
+	Dog dog;
+	Cat cat;
+	// No new, delete, or even pointers!
+	record_animal_speaking(dog, std::cout);
+	std::cout << std::endl;
+	record_animal_speaking(cat, std::cout);
+	std::cout << std::endl;
+}
+\end{lstlisting}
 
 When teaching students about \NewAndDelete{}, I would implore instructors to teach them alongside \lstinline{std::unique_ptr} and \lstinline{std::shared_ptr}.  This lesson should come \emph{after} having taught students about deterministic destruction (RAII), when they are already familiar with the concept of using scope and object lifetimes as a tool for managing resources.  When students are already familiar with this idea, \lstinline{std::unique_ptr} and \lstinline{std::shared_ptr} don't seem like ``magic''.  
 
@@ -178,7 +197,7 @@ void write_bit_pattern(Integer number, std::ostream& output_stream)
 
 That function could print the bit sequence to \lstinline{stdout} with \lstinline{std::cout}, or to a string with \lstinline{std::ostringstream}, or to a file with \lstinline{std::ofstream}.  Streams are a good candidate for polymorphism because we usually don't care about the actual target of an input/output operation at the call site.  It's a good abstraction and that's important.  When teaching students about polymorphism, try to find a good motivation for it!  Solving every problem with an inheritence heirarchy and dynamic dispatch just isn't good engineering.  The ``why'' is just as important as the ``how'', if not more so.
 
-\section*{I Think Maybe You Should be Teaching C}
+\section*{Maybe You Should be Teaching C}
 C++ has a reputation of being a ``low-level'' language and is frequently used as a teaching langauge in courses that explore subjects such as memory management, low-level data structures, embedded design, and operating systems.  While I personally believe that C++ is \emph{usually} a better choice than C for solving most problems, using C++ to teach these concepts frequently leads to adoption of the infamous ``C with classes'' style of C++ programming.  It's important to remember that C and C++ are separate programming languages\footnote{Furthermore, there is no programming language called ``C/C++''.  I would implore any readers who use this term to erase it from their vocabulary immediately.} that encourage different style of programming and are suited to solving different sets of problems.
 
 If your course's learning goals unavoidably mandate that you eschew modern C++ style (e.g. manual memory management), then C might be a better fit.  That is, you should prefer making good C programmers to making subpar C++ programmers.  Understanding how to write good C is extremely valuable in its own right.  For example, learning C has probably done more for my understanding of the importance and motivation behind object-oriented programming than learning C++ or Java has.  That's because in C, you have to follow conventions to enforce OOP.  Consider this collection of functions from the C standard library:
@@ -203,7 +222,7 @@ Hmmm\ldots
 \begin{lstlisting}
 class FILE {
 	FILE(const char* filename, const char* mode); // fopen()
-	~File(); // fclose()
+	~FILE(); // fclose()
 	int puts(const char* str); // fputs()
 	char* gets(char* str, int count); // fgets()
 };
@@ -213,15 +232,29 @@ What an insight!  The \lstinline{<stdio.h>} header in C is actually a half-decen
 
 At NEU, I took a course where we had an assignment to design a \lstinline{LinkedList} class just like this.  There's a \lstinline{struct LinkedList} and a collection of functions that look like \lstinline{int LinkedList_MethodName(struct LinkedList* self, ...)}.  However, the course was taught in C++.  The very next assignment had us redesign the class using member functions, \lstinline{private} member variables, and all the other built-in OO stuff that you'd learn in any run-of-the-mill C++/C\#/Java course.  The idea behind designing the assignments this way is to show how to use C++'s OO features and how they make life easier with respect to doing it manually (i.e. ``the C way'').
 
-I think it's a valuable lesson, but teaching it so directly is misguided.  The course was actually an introduction to embedded design.  Students learn how to use a Unix system, GCC, make, and C++\footnote{That's only half of the course, the other half focuses on computer architecture, boolean logic, etc.}.  The C++ component of the course really just boiled down to ``C with classes'' plus \lstinline{templates} and \lstinline{virtual} member functions.  No STL (though there was plenty of the C standard library), no exceptions, no references (plenty of pointers thogh!).
+I think it's a valuable lesson, but teaching it so directly is misguided.  The course was actually an introduction to embedded design.  Students learn how to use a Unix system, GCC, make, and C++\footnote{That's only half of the course, the other half focuses on computer architecture, boolean logic, etc.}.  The C++ component of the course really just boiled down to ``C with classes'' plus templates and \lstinline{virtual} member functions.  No STL (though there was plenty of the C standard library), no exceptions, no references (plenty of pointers though!).
 
-The course missed out on an opportunity to make good C programmers who understand how to design an object-oriented API and effectively manage resources.  Instead the course taught how not to design an object-oriented API in C++ (``the C way''), and how nobody really writes C++ anymore (``the C++98/pre C++98/C with classes way'').  In cases like this, a decision really has to be made about what language suits the course because, if you just use C++ because ``it's the newer one'' or ``it's more popular'' then you'll likely end up with students who have a warped unserstanding of what C++ programming is supposed to look like.
+The course missed out on an opportunity to make good C programmers who understand how to design an object-oriented API and effectively manage resources.  Instead the course taught students how \emph{not} to design an object-oriented API in C++ (i.e. ``the C way''), and a way that nobody really writes C++ anymore (``the C++98/pre C++98/C with classes way'').  In cases like this, a decision really has to be made about what language suits the course because, if you just use C++ because ``it's the newer one'' or ``it's more popular'' then you'll likely end up with students who have a warped unserstanding of what C++ programming is all about.
 
-\section*{Designing a Course With (or Without) C++}
-Programming languages are a tool.  Some courses are dedicated to teaching students how to use the tool itself. For example, I took a dedicate \emph{Programming in C++} course at NEU.  It was awesome, we learned about \lstinline{auto} type deduction, lambdas, \lstinline{constexpr}, \lstinline{nullptr}, range-\lstinline{for}, uniform initialization syntax, \lstinline{using} type \& template aliases, \lstinline{decltype}, templates, \lstinline{static_assert}, \lstinline{noexcept}, and explicitly \lstinline{default}ed/\lstinline{delete}d functions.  Additionally, we learned how to use the STL to generate random numbers, write concurrent algorithms with \lstinline{std::thread} \& \lstinline{std::async}, manage object lifetimes with \lstinline{std::unique_ptr} \& \lstinline{std::shared_ptr} (and when you should choose each), \lstinline{std::tuple}, \lstinline{std::chrono}, and of course the STL containers and algorithms that have been a staple of C++ programming since 1998.  Of course other courses only use the tool to teach concepts like algorithm + data structure design, embedded design, or object oriented programming.  Such courses certainly shouldn't be expected to cover all of the same content that a dedicated C++ course would.  However, they \emph{absolutely should} be expected to teach students how to use appropriately.  
+\section*{Designing a Course With C++}
+Programming languages are tools.  Some courses are dedicated to teaching students how to use the tools themselves. For example, I took a dedicate \emph{Programming in C++} course at NEU.  It was awesome, we learned about \lstinline{auto} type deduction, lambdas, \lstinline{constexpr}, \lstinline{nullptr}, range-\lstinline{for}, uniform initialization syntax, \lstinline{using} type \& template aliases, \lstinline{decltype}, templates, \lstinline{static_assert}, \lstinline{noexcept}, and explicitly \lstinline{default}ed/\lstinline{delete}d functions.  Additionally, we learned how to use the STL to generate random numbers, write concurrent algorithms with \lstinline{std::thread} \& \lstinline{std::async}, manage object lifetimes with \lstinline{std::unique_ptr} \& \lstinline{std::shared_ptr} (and when you should choose each), \lstinline{std::tuple}, \lstinline{std::chrono}, and of course the STL containers and algorithms that have been a staple of C++ programming since 1998.  Of course other courses only use the tool to teach concepts like algorithm + data structure design, embedded design, or object oriented programming.  Such courses certainly shouldn't be expected to cover all of the same content that a dedicated C++ course would.  However, they \emph{absolutely should} be expected to not mislead students.
 
-Teaching students how to allocate memory with \NewAndDelete{} before showing them how to use \lstinline{std::vector} or without showing them how to use smart pointers, does them a disservice.  In a course where teaching students how to manually manage memory is a course objective, then either show them how to do it the modern C++ way or reconsider whether C++ is the appropriate tool for teaching the course material.  
+We should be careful when teaching C++.  There's no reason for students to come out of your course thinking ``C++ is hard because <manual memory management/you have to write everything from scratch/it's hard to debug segfaults>''.  C++ is all about \emph{not} manually managing resource, leveraging powerful and well-written libraries (\emph{particularly} the STL), and \textbf{preventing run-time bugs with static, compile-time facilities}.  Not teaching modern tools to students makes them worse C++ programmers, and frequently leads to them disliking the language.  
 
-\todo{Finish conclusion}
+\subsection*{Find Motivations for Tools and Features}
+I've addressed this previously, but I think it's particularly important.  Don't just teach the mechanics of a feature or library component, find a problem that it addresses and then show how it can be used to solve that problem.  For example, the 
+
+
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
