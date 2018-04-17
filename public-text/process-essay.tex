@@ -59,7 +59,9 @@
 \usepackage{helvet}
 \usepackage[scaled]{beramono}
 \usepackage[T1]{fontenc}
-
+\usepackage{setspace}
+\usepackage{geometry}
+\linespread{2}
 \newcommand{\placeholdertext}[1]{
 	\noindent{\color{red}{#1}}
 }
@@ -70,20 +72,15 @@
 \begin{document}
 \raggedright
 \maketitle
-This project was probably the most difficult for me to make work out of all of them.  I actually enjoy writing quite a bit, but I tend to struggle with asserting my opinion.  I'm the kind of person who almost always avoids speaking in absolutes (see what I did there?); if my certainty about something is even a smidge under 100\%, you won't catch me rounding up, so to speak.  This letter has a very strong opinion about a subject that affects a fairly diverse group of intellegent.  There's going to be \emph{some} nuance to my audience I'm going to be at least a little bit wrong about \emph{somebody}'s use-case for C++.
+This project was probably the most difficult for me to nail down.  I actually enjoy writing quite a bit, but I tend to struggle with asserting my opinion.  I'm the kind of person who almost always avoids speaking in absolutes; if my certainty about something is even a smidge under 100\%, I make known.  This letter is very opinionated.  It tries to tell people how to do their job and that makes me a bit uneasy.  In light of this, I was more critical of my work while writing this letter than I otherwise would have been.
 
-
-
-
-%%% stuff here?
-
-This letter saw a much more gradual revision process than my previous writing.  Many of the issues I wanted to address only applied to some of my audience.  My advice about possibly teaching C instead of C++ just plain doesn't work for some courses.  A course that revolves around object-oriented programming (OOP) could absolutely be taught in C, but it probably shouldn't.  However, teaching C in a course about the fundamentals of embedded development is very much appropriate.  There's some overlap there too because an embedded development course could still strive to teach a thing or two about OOP.
-
-% making sure my point is clear "it makes bad C++ programmers"
+This letter saw a much more gradual revision process than my previous writing.  Many of the issues I wanted to address only applied to some of my audience.  My advice about possibly teaching C instead of C++ just plain doesn't work for some courses.  A course that revolves around object-oriented programming (OOP) could absolutely be taught in C, but it probably shouldn't.  However, teaching C in a course about the fundamentals of embedded development is very much appropriate.  At the same time, such a course may also try to teach some elements object-oriented design; there's some use-case overlap between different groups of my audience.  My advice should be cognizant of this fact.
 
 Another issue was dealing with the different levels of expertise within my target audience of professors and trainers.  Many instructors may have never truly used C++ outside of an academic context. It wouldn't be unheard of for a graduate student whose only experience with the language comes from previous coursework to be teaching a C++ course.  At the same time, there's no doubt that many of my audience members could be called ``C++ gurus''.  There is also variance in how passionate instructors are about the language.  I myself know the Java programming language fairly well and I could certainly teach the mechanics of the language to a newcomer.  However, I also take issue with some components the language's design, am not well-versed in the newest developments in the Java community, and I make no attempts to actively improve my knowledge of the language.  There's no doubt in my mind that members of my audience feel similarly about C++.
 
 Since the driving force behind my arguments is hinged on the idea of making better C++ programmers, I just might not be able to reach some members of my audience.  It's unfortunate, but once I accepted that fact, I was able to more clearly structre my arguments.  I can't optimize my letter for everybody, so I chose to optimize for those that truly care about making better programmers.  For example, I posit that some courses are better accompanied by a language like C, rather than C++.  I make that recommendation in the interest of \emph{not} making bad C++ programmers.  If teaching the style of programming that I'm pushing in my letter directly interferes with a course's learning goals, then it's better that the course just choose a different language altogether.
+
+One choice that I believe improved the quality of my letter was the decision to use concrete examples of the kinds of changes I'm calling for.  For example, when addressing the issue of deciding whether to teach C or C++, I discuss the value of teaching C-style object-oriented programming best practices.  I analyze the standard C input/output library and show how it mirrors an object-oriented design that you might find in C++.  In short I follow the ``show, don't tell'' principle and provide insight how, as a student, understanding and being able to identify these kinds of examples is beneficial.
 
 
 
